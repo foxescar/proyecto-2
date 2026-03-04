@@ -3,11 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Landing Page - Proyecto Integrado</title>
+<title>MotoRush</title>
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap&quot; rel="stylesheet">
 </head>
 <body>
+<section id="catalogo-simple" class="section">
+  <div class="container">
+    <div class="catalog-controls" id="catalogControls">
+      <button type="button" data-sort="price-asc">Precio ↑</button>
+      <button type="button" data-sort="price-desc">Precio ↓</button>
+      <button type="button" data-sort="name-asc">Nombre A-Z</button>
+      <button type="button" data-sort="name-desc">Nombre Z-A</button>
+    </div>
+    <section class="catalogo" id="catalogo">
+      <article class="tarjeta">
+        <div class="imagen">
+          <img class="img-frente" src="imagenes/moto3.part.1.png" alt="Producto frente">
+          <img class="img-alt" src="imagenes/moto3.part.2.png" alt="Producto perfil">
+        </div>
+        <h3>Benelli TRK 502 X 2026</h3>
+        <p class="precio">$ 36.990.000</p>
 
+        <div class="product-actions">
+          <button class="add">Agregar</button>
+          <button class="ver">Ver</button>
+        </div>
+      </article>
+
+    </section>
+  </div>
+</section>
+<div id="imageModal" class="modal">
+  <span class="close-btn">&times;</span>
+  <img class="modal-content" id="modalImage">
+</div>
+<button class="floating-btn" id="cartBtn">
+  Carrito (0)
+</button>
+<footer class="footer">
+  <div class="container">
+    <p>© 2025 MotoRush. Todos los derechos reservados.</p>
+  </div>
+</footer>
 </body>
 </html>
