@@ -1,0 +1,363 @@
+/*
+ * Content protection
+ *
+ * This product is licensed for one customer to use on one installation (test stores and multishop included).
+ * Site developer has the right to modify this module to suit their needs, but can not redistribute the module in
+ * whole or in part. Any other use of this module constitues a violation of the user agreement.
+ *
+ * NO WARRANTIES OF DATA SAFETY OR MODULE SECURITY
+ * ARE EXPRESSED OR IMPLIED. USE THIS MODULE IN ACCORDANCE
+ * WITH YOUR MERCHANT AGREEMENT, KNOWING THAT VIOLATIONS OF
+ * PCI COMPLIANCY OR A DATA BREACH CAN COST THOUSANDS OF DOLLARS
+ * IN FINES AND DAMAGE A STORES REPUTATION. USE AT YOUR OWN RISK.
+ *
+ *  @author    idnovate.com <info@idnovate.com>
+ *  @copyright 2019 idnovate.com.com
+ *  @license   See above
+*/
+
+$(document).ready(function() {
+    if (PS_CONPRO_RIGHT && PS_CONPRO_RIGHT > 0) {
+        function clickIE4(e)
+        {
+            if(e.button == 2) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+        }
+
+        function clickNS4(e)
+        {
+            if((document.layers) || ((document.getElementById) && !(document.all))) {
+                if((e.which == 2) || (e.which == 3)) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+            }
+        }
+
+        if(document.layers) {
+            document.captureEvents(Event.MOUSEDOWN);
+            document.onmousedown = clickNS4;
+        } else {
+            document.onmousedown = clickIE4;
+        }
+
+        if (PS_CONPRO_RIGHT == '2' && PS_CONPRO_ALERT) {
+            document.oncontextmenu = new Function("alert(PS_CONPRO_ALERT); return false;");
+        } else {
+            document.oncontextmenu = new Function('return false;');
+        }
+    }
+
+    if (PS_CONPRO_DRAGDROP) {
+        (function($) {
+            $(document).bind('dragstart', function(e) {
+              e.preventDefault();
+            });
+        })(jQuery);
+    }
+
+    if (PS_CONPRO_TEXT) {
+        function disableSelection(target)
+        {
+            if (typeof target.onselectstart != 'undefined')
+            {
+                target.onselectstart = function()
+                {
+                    return false;
+                }
+            } else if (typeof target.style.MozUserSelect != 'undefined') {
+                target.style.MozUserSelect = 'none';
+            } else {
+                target.onmousedown=function(e) {if(e && e.target && e.target.tagName) {if(/^(input|select)$/i.test(e.target.tagName)) {return true;}} return false;}
+            }
+
+            target.style.cursor = 'default';
+        }
+
+        (function($) {
+            disableSelection(document.body);
+        })(jQuery);
+    }
+
+    if (PS_CONPRO_CONTEXTUAL) {
+        window.oncontextmenu = function(event) {
+            if ('ontouchstart' in window || navigator.maxTouchPoints) {
+                 event.preventDefault();
+                 event.stopPropagation();
+                 return false;
+            };
+        };
+    }
+
+    if (PS_CONPRO_TRANSIMAGE) {
+        (function($) {
+            /*$('img').each(function() {
+                loadImageTransparent($(this));
+            });*/
+            /*$("img").one("load", function() {
+                loadImageTransparent($(this));
+            }).each(function() {
+                if(this.complete) $(this).load();
+            });*/
+
+            $('body').on('mouseenter', PS_IMAGE_SELECTOR, function() {
+                loadImageTransparent($(this));
+            })
+
+            /*$('body').on('click', 'img:not(.rev-slidebg, .protectionOverlay)', function() {
+                clickImageTransparent($(this));
+            })*/
+        })(jQuery);
+
+        function loadImageTransparent(element) {
+            element.css({
+                'pointer-events' : 'none'
+            })
+            /*if (element.closest('a').attr('href')) {
+                element.css({
+                    'cursor' : 'pointer'
+                })
+            }*/
+            return true;
+        }
+
+        /*function clickImageTransparent(element) {
+            debugger;
+            if (element.closest('a').attr('href')) {
+                window.location = element.closest('fdaf').attr('href');
+            }
+
+            return true;
+        }*/
+    }
+
+    if (PS_CONPRO_CONSOLE) {
+        window.setInterval( function() {
+          console.clear();
+        }, 100);
+
+        Object.defineProperty(console, '_commandLineAPI', {
+            get : function() {
+                throw "Console is disabled";
+            }
+        });
+    }
+
+    /* SHORTCUTS */
+    if (PS_CONPRO_CTRLV) {
+        jQuery.hotkeys.options.filterInputAcceptingElements = false;
+        jQuery.hotkeys.options.filterContentEditable = false;
+        $(document).bind('keydown', 'ctrl+v', function(event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            return false;
+        });
+    }
+
+    if (PS_CONPRO_CTRLC) {
+        $(document).bind('keydown', 'ctrl+c', function(event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            return false;
+        });
+    }
+
+    if (PS_CONPRO_ALTE) {
+        $(document).bind('keydown', 'alt+e', function(event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            return false;
+        });
+    }
+
+    if (PS_CONPRO_ALTF) {
+        $(document).bind('keydown', 'alt+f', function(event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            return false;
+        });
+    }
+
+    if (PS_CONPRO_CTRLF) {
+        $(document).bind('keydown', 'ctrl+f', function(event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            return false;
+        });
+    }
+
+    if (PS_CONPRO_CTRLX) {
+        $(document).bind('keydown', 'ctrl+x', function(event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            return false;
+        });
+    }
+
+    if (PS_CONPRO_CTRLP) {
+        $(document).bind('keydown', 'ctrl+p', function(event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            return false;
+        });
+    }
+
+    if (PS_CONPRO_CTRLS) {
+        $(document).bind('keydown', 'ctrl+s', function(event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            return false;
+        });
+    }
+
+    if (PS_CONPRO_CTRLQ) {
+        $(document).bind('keydown', 'ctrl+q', function(event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            return false;
+        });
+    }
+
+    if (PS_CONPRO_CTRLSHIFTQ) {
+        $(document).bind('keydown', 'ctrl+shift+q', function(event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            return false;
+        });
+    }
+
+    if (PS_CONPRO_CTRLA) {
+        $(document).bind('keydown', 'ctrl+a', function(event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            return false;
+        });
+    }
+
+    if (PS_CONPRO_CTRLU) {
+        $(document).bind('keydown', 'ctrl+u', function(event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            return false;
+        });
+    }
+
+    if (PS_CONPRO_CTRLSHIFTC) {
+        $(document).bind('keydown', 'ctrl+shift+c', function(event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            return false;
+        });
+    }
+
+    if (PS_CONPRO_CTRLSHIFTI) {
+        $(document).bind('keydown', 'ctrl+shift+i', function(event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            return false;
+        });
+    }
+
+    if (PS_CONPRO_CTRLSHIFTJ) {
+        $(document).bind('keydown', 'ctrl+shift+j', function(event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            return false;
+        });
+    }
+
+    if (PS_CONPRO_CMDSHIFTN) {
+        $(document).bind('keyup', 'printscreen', function(event) {
+            var $button = $('<button style="display:none" id="copy-clipboard" data-clipboard-text=" " />');
+            $button.appendTo($("body"));
+            new Clipboard('#copy-clipboard');
+            $('#copy-clipboard').trigger('click');
+            $button.remove();
+
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            return false;
+        });
+
+        $(document).bind('keydown', 'meta+shift+3, meta+shift+4, meta+shift+6', function(event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            return false;
+        });
+    }
+
+    if (PS_CONPRO_F1) {
+        $(document).bind('keydown', 'F1', function(event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            return false;
+        });
+    }
+
+    if (PS_CONPRO_F3) {
+        $(document).bind('keydown', 'F3', function(event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            return false;
+        });
+    }
+
+    if (PS_CONPRO_CTRLF4) {
+        $(document).bind('keydown', 'ctrl+F4', function(event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            return false;
+        });
+    }
+
+    if (PS_CONPRO_F5) {
+        $(document).bind('keydown', 'F5', function(event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            return false;
+        });
+    }
+
+    if (PS_CONPRO_F10) {
+        $(document).bind('keydown', 'F10', function(event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            return false;
+        });
+    }
+
+    if (PS_CONPRO_F12) {
+        $(document).bind('keydown', 'F12', function(event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            return false;
+        });
+    }
+})

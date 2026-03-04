@@ -1,0 +1,84 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('https://cdn.icomoon.io/146409/cliengowidget/icomoon.eot?ssv087');
+  src:  url('https://cdn.icomoon.io/146409/cliengowidget/icomoon.eot?ssv087#iefix') format('embedded-opentype'),
+    url('https://cdn.icomoon.io/146409/cliengowidget/icomoon.woff2?ssv087') format('woff2'),
+    url('https://cdn.icomoon.io/146409/cliengowidget/icomoon.ttf?ssv087') format('truetype'),
+    url('https://cdn.icomoon.io/146409/cliengowidget/icomoon.woff?ssv087') format('woff'),
+    url('https://cdn.icomoon.io/146409/cliengowidget/icomoon.svg?ssv087#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-file_download:before {
+  content: "\e910";
+}
+.icon-thumbs-down:before {
+  content: "\e90c";
+  color: #8b8b8b;
+}
+.icon-thumbs-up:before {
+  content: "\e90d";
+  color: #8b8b8b;
+}
+.icon-close:before {
+  content: "\e90b";
+}
+.icon-icon3:before {
+  content: "\e908";
+}
+.icon-icon2:before {
+  content: "\e909";
+}
+.icon-icon1:before {
+  content: "\e90a";
+}
+.icon-paper-plane-outline:before {
+  content: "\e907";
+  color: #acacac;
+}
+.icon-call:before {
+  content: "\e905";
+  color: #515151;
+}
+.icon-videocall:before {
+  content: "\e906";
+  color: #515151;
+}
+.icon-cdown:before {
+  content: "\e904";
+}
+.icon-thumbsup:before {
+  content: "\e903";
+}
+.icon-emoticons:before {
+  content: "\e900";
+}
+.icon-cancelar:before {
+  content: "\e901";
+}
+.icon-paper-plane:before {
+  content: "\e902";
+}
+.icon-Send:before {
+  content: "\e90e";
+}
+.icon-attach-file:before {
+  content: "\e90f";
+}
